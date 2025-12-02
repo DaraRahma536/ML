@@ -1,0 +1,4 @@
+,Profile Name,Description,Size,Percentage
+0,"Cluster 0: High Balance, High Spender, Frequent Cash Advance","Customers with high balance, high spender, frequent cash advance, good payment behavior. High Credit Limit.",1636,18.279329608938546
+1,"Cluster 1: High Balance, Low Spender, Frequent Cash Advance","Customers with high balance, low spender, frequent cash advance, good payment behavior. High Credit Limit.",3016,33.69832402234637
+2,"Cluster 2: Low Balance, High Spender, Frequent Cash Advance","Customers with low balance, high spender, frequent cash advance, good payment behavior. High Credit Limit.",4298,48.022346368715084
