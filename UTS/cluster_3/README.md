@@ -29,7 +29,7 @@ Deskripsi Model dan Hasil Metriks
 Navigasi Notebooks
    -
    - **Struktur Repository**   
-     ├── UTS2_ML_Dara_NoTuning.ipynb &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Notebook utama (baseline tanpa tuning)
+     ├── UTS2_ML_Dara_NoTuning.ipynb &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Notebook utama (baseline tanpa tuning)   
      │── cluster_distribution.png   
      │── cluster_heatmap.png   
      │── cluster_profiles_20251202_215637.csv   
