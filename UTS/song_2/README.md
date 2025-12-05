@@ -17,27 +17,35 @@ Penjelasan Singkat
 Deskripsi Model dan Hasil Metriks
    -
    - **Model**   
-     LightGBM (Light Gradient Boosting Machine) Classifier merupakan framework gradient boosting yang dirancang khusus untuk kecepatan tinggi dan efisiensi memori. Ini adalah algoritma ensemble yang menggunakan decision trees dan termasuk dalam keluarga GBM. Model ini digunakan karena proyek ini menggunakan Google Colab dengan resource CPU (tidak menggunakan GPU karena compute units habis) agar ringan dan tidak terjadi crashed. Untuk mengisi data null, numerik diisi dengan median, sedangkan str diisi dengan missing. Split data sebesar 80% training dan 20% validation.
+     - Linear Regression (mencari garis lurus terbaik yang memodelkan hubungan linear)
+     - Ridge Regression (Linear Regression dengan penalti L2 untuk mencegah overfitting. Menggunakan nilai alpha 1.0)
+     - Lasso Regression (Linear Regression dengan penalti L1 yang bisa menghasilkan koefisien tepat nol. Menggunakan nilai alpha 0.01)
+     - Random Forest Regressor (menggabungkan banyak decision tree untuk prediksi lebih akurat dan stabil. Jumlah tree yang digunakan adalah 100 dengan random state 42)
+     - Gradient Boosting Regressor (metode sequential dimana setiap model baru memperbaiki error model sebelumnya. jumlah n sebanyak 100 dengan random state sebesar 42)
      
    - **Hasil Matriks**   
-     Primary Matriks menggunakan AUC-ROC (Area Under the Receiver Operating Characteristic Curve). Model dilatih dengan parameter default LightBGM dengan output berupa probabilitas penipuan (fraud) untuk setiap transaksi di data testing.
+     Matriks evaluasi yang digunakan yaitu RMSE (Root Mean Squared Error), MAE (Mean Absolute Error), dan R² (Koefisien Determinasi).
+     |Model|RMSE|MAE|R²|
+     |-----|----|---|--|
+     |Linear Regression|10.04|7.37|0.155|
+     |Ridge Regression|10.04|7.37|0.155|
+     |Lasso Regression|10.04|7.37|0.155|
+     |Random Forest|9.49|6.88|0.246|
+     |Gradient Boosting|9.63|6.94|0.224|   
+
+     Dari 5 model diatas, model terbaik yang didapat adalah **Random Forest Regressor** yang memiliki nilai RMSE terendah dan R² tertinggi pada data validasi, sehingga menjadikannya model dengan performa terbaik.
      
 Navigasi Notebooks
    -
    - **Struktur Repository**   
-     ├── UTS1_ML_Dara(NoTuning).ipynb &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Notebook utama (baseline tanpa tuning)   
-├── midterm_folder/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Folder data (dari Google Drive)   
-│   ├── train_transaction.csv &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Data training   
-│   └── test_transaction.csv &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Data testing   
-├── train_clean.csv &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Data training setelah preprocessing   
-└── submission_done.csv &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Hasil prediksi final
+     ├── UTS2_ML_Dara_NoTuning.ipynb &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Notebook utama (baseline tanpa tuning)   
 
    - **Navigasi Notebook**
-     - Instalasi Modul (polars, lightBGM)
-     - Download dataset training dan testing
+     - Instalasi Modul (polars, gdown, sklearn, dll)   
+     - Download dataset training dan testing   
      - Load Dataset   
-     - Preprocessing Data (Split numerik dan karakter, mengisi null, label encoding, save clean data)
-     - Train dengan LightBGM dengan parameter default
-     - Prediksi data testing dan hasil disimpan di file submission_done.csv
+     - Preprocessing Data (mengisi nilai null, deteksi outlier menggunakan IQR, scaling fitur, pembagian data train, validasi, dan test 70/15/15, seleksi fitur dan pemilihan fitur)   
+     - Model Training dan Evaluasi (train dengan 5 model regresi dan evaluasim menggunakan RMSE, MAE, dan R²)   
+     - Evaluasi Pada Data Uji (Pengujian model terbaik pada data uji serta menampilkan visualisasi hasil prediksi dan aktual)
 
 
